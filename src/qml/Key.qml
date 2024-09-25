@@ -11,7 +11,7 @@ Button {
     property string btnDisplayedText: text
     property int btnKey: Qt.Key_unknown
     property color btnBackground: InputPanel.btnBackgroundColor
-    property int btnRadius: 5
+    property int btnRadius: InputPanel.btnRadius
     property color txtColor: InputPanel.btnTextColor
     property string txtFont: InputPanel.btnTextFontFamily
     property string btnIcon: ""
