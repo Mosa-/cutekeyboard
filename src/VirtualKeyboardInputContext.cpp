@@ -118,7 +118,9 @@ void VirtualKeyboardInputContext::setFocusObject(QObject *object) {
 
     bool AcceptsInput = d->FocusItem->inputMethodQuery(Qt::ImEnabled).toBool();
     if (!AcceptsInput) {
-        hideInputPanel();
+        if (isInputPanelVisible()) {
+            hideInputPanel();
+        }
         return;
     }
 
@@ -140,13 +142,6 @@ void VirtualKeyboardInputContext::setFocusObject(QObject *object) {
             }
         }
     }
-
-    QObject::connect(d->FocusItem, &QQuickItem::visibleChanged, this, [&](){
-        if(!d->FocusItem->isVisible())
-            hideInputPanel();
-        else
-            showInputPanel();
-    });
 
     emit inputItemChanged();
 
