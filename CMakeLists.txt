@@ -9,10 +9,9 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 set(CMAKE_AUTORCC ON)
 
-find_package(QT NAMES Qt5 Qt6 REQUIRED COMPONENTS Core)
-find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Gui Qml Quick)
+find_package(Qt6 REQUIRED COMPONENTS Core Gui Qml Quick)
 
-set(BUILD_EXAMPLES OFF)
+option(BUILD_EXAMPLES "Build with examples" OFF)
 
 if(QT_KNOWN_POLICY_QTP0001)
   qt_policy(SET QTP0001 NEW)
