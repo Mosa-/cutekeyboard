@@ -11,6 +11,7 @@ Item {
     property color btnSpecialBackgroundColor: Qt.darker("#808080")
     property color btnTextColor: "#ffffff"
     property int btnRadius: 0
+    property int btnIconFillMode: Image.PreserveAspectFit
     property string btnTextFontFamily
     property string languageLayout: "En"
     property string backspaceIcon: "qrc:/icons/backspace.png"
@@ -77,6 +78,7 @@ Item {
         InputPanel.btnSpecialBackgroundColor = btnSpecialBackgroundColor;
         InputPanel.btnTextColor = btnTextColor;
         InputPanel.btnRadius = btnRadius;
+        InputPanel.btnIconFillMode = btnIconFillMode;
         InputPanel.btnTextFontFamily = btnTextFontFamily;
         InputPanel.backspaceIcon = backspaceIcon;
         InputPanel.enterIcon = enterIcon;
