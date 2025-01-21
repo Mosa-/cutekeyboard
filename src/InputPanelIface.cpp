@@ -6,6 +6,7 @@ struct InputPanelIface::InputPanelIfacePrivate {
     QColor btnSpecialBackgroundColor{};
     QColor btnTextColor{};
     int btnRadius{};
+    int btnIconFillMode{};
     QString btnTextFontFamily{};
     QString backspaceIcon{};
     QString enterIcon{};
@@ -75,6 +76,15 @@ void InputPanelIface::setBtnRadius(const int btnRadius) {
     if (pimpl->btnRadius != btnRadius) {
         pimpl->btnRadius = btnRadius;
         emit btnRadiusChanged();
+    }
+}
+
+int InputPanelIface::btnIconFillMode() const { return pimpl->btnIconFillMode; }
+
+void InputPanelIface::setBtnIconFillMode(const int btnIconFillMode) {
+    if (pimpl->btnIconFillMode != btnIconFillMode) {
+        pimpl->btnIconFillMode = btnIconFillMode;
+        emit btnIconFillModeChanged();
     }
 }
 

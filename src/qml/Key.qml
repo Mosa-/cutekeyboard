@@ -12,6 +12,7 @@ Button {
     property int btnKey: Qt.Key_unknown
     property color btnBackground: InputPanel.btnBackgroundColor
     property int btnRadius: InputPanel.btnRadius
+    property int btnIconFillMode: InputPanel.btnIconFillMode
     property color txtColor: InputPanel.btnTextColor
     property string txtFont: InputPanel.btnTextFontFamily
     property string btnIcon: ""
@@ -74,7 +75,7 @@ Button {
         Text {
             id: btnTextItem
 
-            text: btnDisplayedText == "" ? btnText : btnDisplayedText
+            text: btnDisplayedText === "" ? btnText : btnDisplayedText
             color: txtColor
             anchors.fill: parent
             horizontalAlignment: Text.AlignHCenter
@@ -86,18 +87,14 @@ Button {
                 pixelSize: key.height * 0.4
                 capitalization: InputEngine.uppercase ? Font.AllUppercase : Font.MixedCase
             }
-
         }
-
         Image {
             id: btnIconItem
-
             source: btnIcon
             visible: btnDisplayedText === ""
             anchors.fill: parent
-            fillMode: Image.PreserveAspectFit
+            fillMode: btnIconFillMode
         }
-
     }
 
 }

@@ -17,6 +17,7 @@ class InputPanelIface : public QObject {
     Q_PROPERTY(QColor btnSpecialBackgroundColor READ btnSpecialBackgroundColor WRITE setBtnSpecialBackgroundColor NOTIFY btnSpecialBackgroundColorChanged)
     Q_PROPERTY(QColor btnTextColor READ btnTextColor WRITE setBtnTextColor NOTIFY btnTextColorChanged)
     Q_PROPERTY(int btnRadius READ btnRadius WRITE setBtnRadius NOTIFY btnRadiusChanged)
+    Q_PROPERTY(int btnIconFillMode READ btnIconFillMode WRITE setBtnIconFillMode NOTIFY btnIconFillModeChanged)
     Q_PROPERTY(QString btnTextFontFamily READ btnTextFontFamily WRITE setBtnTextFontFamily NOTIFY btnTextFontFamilyChanged)
     Q_PROPERTY(QString backspaceIcon READ backspaceIcon WRITE setBackspaceIcon NOTIFY backspaceIconChanged)
     Q_PROPERTY(QString enterIcon READ enterIcon WRITE setEnterIcon NOTIFY enterIconChanged)
@@ -46,6 +47,9 @@ class InputPanelIface : public QObject {
 
     int btnRadius() const;
     void setBtnRadius(const int btnRadius);
+
+    int btnIconFillMode() const;
+    void setBtnIconFillMode(int btnIconFillMode);
 
     QString btnTextFontFamily() const;
     void setBtnTextFontFamily(const QString &btnTextFontFamily);
@@ -81,6 +85,7 @@ class InputPanelIface : public QObject {
     void btnSpecialBackgroundColorChanged();
     void btnTextColorChanged();
     void btnRadiusChanged();
+    void btnIconFillModeChanged();
     void btnTextFontFamilyChanged();
     void backspaceIconChanged();
     void enterIconChanged();
