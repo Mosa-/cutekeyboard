@@ -11,6 +11,7 @@ Button {
     property string btnDisplayedText: text
     property int btnKey: Qt.Key_unknown
     property color btnBackground: InputPanel.btnBackgroundColor
+    property int btnBorderWidth: InputPanel.btnBorderWidth
     property int btnRadius: InputPanel.btnRadius
     property int btnIconFillMode: InputPanel.btnIconFillMode
     property color txtColor: InputPanel.btnTextColor
@@ -66,7 +67,7 @@ Button {
 
     background: Rectangle {
         id: btnBackgroundItem
-
+        border.width: btnBorderWidth
         color: btnBackground
         radius: btnRadius
     }

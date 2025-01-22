@@ -11,6 +11,7 @@ Item {
     property color btnSpecialBackgroundColor: Qt.darker("#808080")
     property color btnTextColor: "#ffffff"
     property int btnRadius: 0
+    property int btnBorderWidth: 0
     property int btnIconFillMode: Image.PreserveAspectFit
     property string btnTextFontFamily
     property string languageLayout: "En"
@@ -78,6 +79,7 @@ Item {
         InputPanel.btnBackgroundColor = btnBackgroundColor;
         InputPanel.btnSpecialBackgroundColor = btnSpecialBackgroundColor;
         InputPanel.btnTextColor = btnTextColor;
+        InputPanel.btnBorderWidth = btnBorderWidth;
         InputPanel.btnRadius = btnRadius;
         InputPanel.btnIconFillMode = btnIconFillMode;
         InputPanel.btnTextFontFamily = btnTextFontFamily;
