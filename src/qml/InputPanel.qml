@@ -21,6 +21,7 @@ Item {
     property string hideKeyboardIcon: "qrc:/icons/hide-arrow.png"
     property string languageIcon: "qrc:/icons/language.png"
     property var availableLanguageLayouts: ["En"]
+    property int keyboardSideMargin: 5
 
     /*! \internal */
     readonly property bool __isRootItem: inputPanel.parent !== null && inputPanel.parent.parent === null
@@ -138,7 +139,10 @@ Item {
 
             anchors {
                 fill: parent
-                margins: 5
+                topMargin: 5
+                bottomMargin: 5
+                leftMargin: root.keyboardSideMargin
+                rightMargin: root.keyboardSideMargin
             }
 
         }
