@@ -13,6 +13,7 @@ Item {
     property int btnRadius: 0
     property int btnBorderWidth: 0
     property int btnIconFillMode: Image.PreserveAspectFit
+    property bool enterKeyEnabled: true
     property string btnTextFontFamily
     property string languageLayout: "En"
     property string backspaceIcon: "qrc:/icons/backspace.png"
@@ -68,6 +69,8 @@ Item {
 
     }
     onLanguageLayoutChanged: loadLettersLayout()
+    onEnterKeyEnabledChanged: InputPanel.enterKeyEnabled = enterKeyEnabled;
+
     Component.onCompleted: {
 
         InputContext.registerInputPanel(root)
@@ -82,6 +85,7 @@ Item {
         InputPanel.btnBorderWidth = btnBorderWidth;
         InputPanel.btnRadius = btnRadius;
         InputPanel.btnIconFillMode = btnIconFillMode;
+        InputPanel.enterKeyEnabled = enterKeyEnabled;
         InputPanel.btnTextFontFamily = btnTextFontFamily;
         InputPanel.backspaceIcon = backspaceIcon;
         InputPanel.enterIcon = enterIcon;
