@@ -19,6 +19,7 @@ class InputPanelIface : public QObject {
     Q_PROPERTY(int btnBorderWidth READ btnBorderWidth WRITE setBtnBorderWidth NOTIFY btnBorderWidthChanged)
     Q_PROPERTY(int btnRadius READ btnRadius WRITE setBtnRadius NOTIFY btnRadiusChanged)
     Q_PROPERTY(int btnIconFillMode READ btnIconFillMode WRITE setBtnIconFillMode NOTIFY btnIconFillModeChanged)
+    Q_PROPERTY(bool enterKeyEnabled READ enterKeyEnabled WRITE setEnterKeyEnabled NOTIFY enterKeyEnabledChanged)
     Q_PROPERTY(QString btnTextFontFamily READ btnTextFontFamily WRITE setBtnTextFontFamily NOTIFY btnTextFontFamilyChanged)
     Q_PROPERTY(QString backspaceIcon READ backspaceIcon WRITE setBackspaceIcon NOTIFY backspaceIconChanged)
     Q_PROPERTY(QString enterIcon READ enterIcon WRITE setEnterIcon NOTIFY enterIconChanged)
@@ -54,6 +55,9 @@ class InputPanelIface : public QObject {
 
     int btnIconFillMode() const;
     void setBtnIconFillMode(int btnIconFillMode);
+
+    bool enterKeyEnabled() const;
+    void setEnterKeyEnabled(bool enterKeyEnabled);
 
     QString btnTextFontFamily() const;
     void setBtnTextFontFamily(const QString &btnTextFontFamily);
@@ -91,6 +95,7 @@ class InputPanelIface : public QObject {
     void btnBorderWidthChanged();
     void btnRadiusChanged();
     void btnIconFillModeChanged();
+    void enterKeyEnabledChanged();
     void btnTextFontFamilyChanged();
     void backspaceIconChanged();
     void enterIconChanged();

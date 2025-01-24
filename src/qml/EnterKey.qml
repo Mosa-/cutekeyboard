@@ -7,8 +7,7 @@ Key {
     showPreview: false
     btnBackground: InputPanel.btnSpecialBackgroundColor
     btnText: "\n"
-    btnDisplayedText: InputPanel.enterIcon === "" ? "Enter" : ""
-    btnIcon: InputPanel.enterIcon === "" ? "" : InputPanel.enterIcon
-    enabled: InputContext.inputItem ? InputContext.inputItem.EnterKeyAction.enabled : true
-    opacity: enabled ? 1 : 0.5
+    btnDisplayedText: InputPanel.enterIcon === "" && enabled ? "Enter" : ""
+    btnIcon: InputPanel.enterIcon === "" && !enabled ? "" : InputPanel.enterIcon
+    enabled: InputContext.inputItem ? InputPanel.enterKeyEnabled && InputContext.inputItem.EnterKeyAction.enabled : true
 }

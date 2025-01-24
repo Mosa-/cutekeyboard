@@ -8,6 +8,7 @@ struct InputPanelIface::InputPanelIfacePrivate {
     int btnBorderWidth{};
     int btnRadius{};
     int btnIconFillMode{};
+    bool enterKeyEnabled{};
     QString btnTextFontFamily{};
     QString backspaceIcon{};
     QString enterIcon{};
@@ -95,6 +96,15 @@ void InputPanelIface::setBtnIconFillMode(const int btnIconFillMode) {
     if (pimpl->btnIconFillMode != btnIconFillMode) {
         pimpl->btnIconFillMode = btnIconFillMode;
         emit btnIconFillModeChanged();
+    }
+}
+
+bool InputPanelIface::enterKeyEnabled() const { return pimpl->enterKeyEnabled; }
+
+void InputPanelIface::setEnterKeyEnabled(const bool enterKeyEnabled) {
+    if (pimpl->enterKeyEnabled != enterKeyEnabled) {
+        pimpl->enterKeyEnabled = enterKeyEnabled;
+        emit enterKeyEnabledChanged();
     }
 }
 
