@@ -73,9 +73,17 @@ bool DeclarativeInputEngine::virtualKeyClick(Qt::Key key, const QString &text,
                          Qt::KeyboardModifiers(modifiers), text);
     QKeyEvent releaseEvent(QEvent::KeyRelease, key,
                            Qt::KeyboardModifiers(modifiers), text);
-    return QCoreApplication::sendEvent(QGuiApplication::focusObject(),
+
+    const auto focusObject = QGuiApplication::focusObject();
+
+    if (focusObject == nullptr) {
+        qWarning() << "No focus object set, cannot send key events!";
+        return false;
+    }
+
+    return QCoreApplication::sendEvent(focusObject,
                                        &pressEvent) &&
-           QCoreApplication::sendEvent(QGuiApplication::focusObject(),
+           QCoreApplication::sendEvent(focusObject,
                                        &releaseEvent);
 }
 

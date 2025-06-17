@@ -5,7 +5,7 @@ import QtQuick.Layouts 1.12
 
 Button {
     id: key
-
+    objectName: btnText + "_key"
     property real weight: parent.keyWeight
     property string btnText: ""
     property string btnDisplayedText: text
