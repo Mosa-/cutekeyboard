@@ -63,18 +63,16 @@ qt_add_qml_module(
 
 qt_add_resources(${PROJECT_NAME} "icons" PREFIX "/" FILES "resources.qrc")
 
-target_link_libraries(
-  ${PROJECT_NAME} PRIVATE Qt::Core Qt::Gui Qt::GuiPrivate Qt::Qml Qt::Quick
-                          Qt::QuickPrivate)
+target_link_libraries( ${PROJECT_NAME}
+	PRIVATE Qt::Core Qt::Gui Qt::GuiPrivate Qt::Qml Qt::Quick Qt::QuickPrivate)
 
-if(${PROJECT_NAME} STREQUAL ${CMAKE_PROJECT_NAME})
-  set(INSTALL_DIR ${QT_DIR}/../../../plugins/platforminputcontexts)
-else()
-  set(INSTALL_DIR ${CMAKE_INSTALL_BINDIR}/platforminputcontexts)
-  set_target_properties(
-    ${PROJECT_NAME}
-    PROPERTIES LIBRARY_OUTPUT_DIRECTORY
-               "$<TARGET_FILE_DIR:${CMAKE_PROJECT_NAME}>/platforminputcontexts")
-endif()
 
-install(TARGETS ${PROJECT_NAME} LIBRARY DESTINATION ${INSTALL_DIR})
+
+install(TARGET ${PROJECT_NAME}
+	DESTINATION ${QT_DEPLOY_PLUGINS_DIR} )
+
+install(FILES  ${QML_FILES}
+	DESTINATION ${QT_DEPLOY_QML_DIR}
+	PERMISSIONS WORLD_READ
+	)
+
