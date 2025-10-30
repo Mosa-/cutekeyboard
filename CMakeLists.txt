@@ -7,11 +7,14 @@ project(
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-set(CMAKE_AUTORCC ON)
+find_package(QT NAMES Qt6 REQUIRED COMPONENTS Core)
+find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Gui Qml Quick)
 
-find_package(Qt6 REQUIRED COMPONENTS Core Gui Qml Quick)
+if (Qt6Gui_VERSION VERSION_GREATER_EQUAL "6.10.0")
+  find_package(Qt6 REQUIRED COMPONENTS GuiPrivate QuickPrivate)
+endif()
 
-option(BUILD_EXAMPLES "Build with examples" OFF)
+option(BUILD_EXAMPLES "Build examples" OFF)
 
 if(QT_KNOWN_POLICY_QTP0001)
   qt_policy(SET QTP0001 NEW)
