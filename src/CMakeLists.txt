@@ -66,9 +66,7 @@ qt_add_resources(${PROJECT_NAME} "icons" PREFIX "/" FILES "resources.qrc")
 target_link_libraries( ${PROJECT_NAME}
 	PRIVATE Qt::Core Qt::Gui Qt::GuiPrivate Qt::Qml Qt::Quick Qt::QuickPrivate)
 
-
-
-install(TARGET ${PROJECT_NAME}
+install(TARGETS ${PROJECT_NAME}
 	DESTINATION ${QT_DEPLOY_PLUGINS_DIR} )
 
 install(FILES  ${QML_FILES}
