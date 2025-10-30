@@ -1,23 +1,45 @@
 name: Build
 
 on:
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+  workflow_dispatch:
+  pull_request: {}
+  push: { branches: [main] }
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        include:
+          - name: "QMake Qt5"
+            qt-version: "5.15.2"
+            build-system: qmake
+          - name: "CMake Qt6"
+            qt-version: "6.8.3"
+            build-system: cmake
+
+    name: ${{ matrix.name }}
 
     steps:
-    - uses: actions/checkout@v3
-    - name: Installing Qt
-      uses: jurplel/install-qt-action@v3.0.0
-      with:
-        version: '5.15.2'
-    - name: Run QMake
-      run: qmake
-    - name: Build
-      run: make -j4
+      - uses: actions/checkout@v4
+
+      - name: Installing Qt
+        uses: jurplel/install-qt-action@v4
+        with:
+          version: ${{ matrix.qt-version }}
+
+      - name: Configure Project with QMake
+        if: matrix.build-system == 'qmake'
+        run: qmake
+
+      - name: Build with QMake
+        if: matrix.build-system == 'qmake'
+        run: make -j$(nproc)
+
+      - name: Configure Project with CMake
+        if: matrix.build-system == 'cmake'
+        run: cmake -S . -B build -GNinja
+
+      - name: Build with CMake
+        if: matrix.build-system == 'cmake'
+        run: cmake --build build --target all
