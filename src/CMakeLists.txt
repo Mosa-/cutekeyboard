@@ -66,11 +66,15 @@ qt_add_resources(${PROJECT_NAME} "icons" PREFIX "/" FILES "resources.qrc")
 target_link_libraries( ${PROJECT_NAME}
 	PRIVATE Qt::Core Qt::Gui Qt::GuiPrivate Qt::Qml Qt::Quick Qt::QuickPrivate)
 
+include(GNUInstallDirs)
+
+
+
 install(TARGETS ${PROJECT_NAME}
-	DESTINATION ${QT_DEPLOY_PLUGINS_DIR} )
+	DESTINATION ${CMAKE_INSTALL_LIBDIR}/plugins/platforminputcontexts/ )
 
 install(FILES  ${QML_FILES}
-	DESTINATION ${QT_DEPLOY_QML_DIR}
+	DESTINATION ${CMAKE_INSTALL_LIBDIR}/qml/QtQuick/
 	PERMISSIONS WORLD_READ
 	)
 
