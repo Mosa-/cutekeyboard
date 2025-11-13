@@ -9,30 +9,36 @@ set(SOURCES
     "DeclarativeInputEngine.cpp")
 
 set(QML_FILES
-    "qml/AlternativeKeysPopup.qml"
-    "qml/BackspaceKey.qml"
-    "qml/CsLayout.qml"
-    "qml/DeLayout.qml"
-    "qml/DigitsLayout.qml"
-    "qml/ElLayout.qml"
-    "qml/EnLayout.qml"
-    "qml/EnterKey.qml"
-    "qml/EsLayout.qml"
-    "qml/FrLayout.qml"
-    "qml/HideKey.qml"
-    "qml/InputPanel.qml"
-    "qml/ItLayout.qml"
-    "qml/KeyModel.qml"
-    "qml/KeyPopup.qml"
-    "qml/Key.qml"
-    "qml/NlLayout.qml"
-    "qml/PlLayout.qml"
-    "qml/PtLayout.qml"
-    "qml/QwertyLayout.qml"
-    "qml/ShiftKey.qml"
-    "qml/SpaceKey.qml"
-    "qml/SymbolKey.qml"
-    "qml/SymbolLayout.qml")
+	"qml/AlternativeKeysPopup.qml"
+	"qml/BackspaceKey.qml"
+	"qml/CsLayout.qml"
+	"qml/DeLayout.qml"
+	"qml/DigitsLayout.qml"
+	"qml/ElLayout.qml"
+	"qml/EnLayout.qml"
+	"qml/EnterKey.qml"
+	"qml/EsLayout.qml"
+	"qml/FrLayout.qml"
+	"qml/HideKey.qml"
+	"qml/InputPanel.qml"
+	"qml/ItLayout.qml"
+	"qml/Key.qml"
+	"qml/KeyModel.qml"
+	"qml/KeyPopup.qml"
+	"qml/LanguageKey.qml"
+	"qml/LtSrHrBsLayout.qml"
+	"qml/NlLayout.qml"
+	"qml/PlLayout.qml"
+	"qml/PtLayout.qml"
+	"qml/QwertyLayout.qml"
+	"qml/RuLayout.qml"
+	"qml/ShiftKey.qml"
+	"qml/SpaceKey.qml"
+	"qml/SvLayout.qml"
+	"qml/SymbolKey.qml"
+	"qml/SymbolLayout.qml"
+	"qml/UkLayout.qml"
+    )
 
 foreach(_file IN_LISTS QML_FILES)
   cmake_path(GET _file FILENAME _fileName)
@@ -70,7 +76,7 @@ include(GNUInstallDirs)
 install(TARGETS ${PROJECT_NAME}
 	DESTINATION ${CMAKE_INSTALL_LIBDIR}/plugins/platforminputcontexts/ )
 
-install(FILES  ${QML_FILES}
+install(FILES  ${QML_FILES} qml/qmldir 
 	DESTINATION ${CMAKE_INSTALL_LIBDIR}/qml/QtQuick/CuteKeyboard
 	PERMISSIONS OWNER_READ GROUP_READ WORLD_READ
 	PERMISSIONS OWNER_EXECUTE GROUP_EXECUTE WORLD_EXECUTE
