@@ -2,7 +2,7 @@ import CuteKeyboard 1.0
 import QtQuick 2.0
 
 Key {
-    objectName: "shiftKey"
+    objectName: inputPanelRef.objectName + "Key_Shift"
     btnKey: Qt.Key_Shift
     functionKey: true
     showPreview: false

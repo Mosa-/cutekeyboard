@@ -24,9 +24,10 @@ Item {
     property string languageIcon: "qrc:/icons/language.png"
     property var availableLanguageLayouts: ["En"]
     property int keyboardSideMargin: 5
+    property alias emptySpaceBar: layoutLoader.emptySpaceBar
 
     /*! \internal */
-    readonly property bool __isRootItem: inputPanel.parent !== null && inputPanel.parent.parent === null
+    readonly property bool __isRootItem: root.parent !== null && root.parent.parent === null
 
     function showKeyPopup(keyButton) {
         keyPopup.popup(keyButton, root);
@@ -137,6 +138,9 @@ Item {
 
         Loader {
             id: layoutLoader
+
+            // display empty space bar
+            property bool emptySpaceBar: false
 
             // lang description only needed for layouts that share a file
             property string langDescription

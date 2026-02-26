@@ -2,7 +2,7 @@ import CuteKeyboard 1.0
 import QtQuick 2.0
 
 Key {
-    objectName: "enterKey"
+    objectName: inputPanelRef.objectName + "Key_Enter"
     btnKey: Qt.Key_Enter
     repeatable: true
     showPreview: false

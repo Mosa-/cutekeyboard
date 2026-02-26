@@ -82,7 +82,10 @@ void VirtualKeyboardInputContext::registerInputPanel(QObject *inputPanel)
 
 bool VirtualKeyboardInputContext::isValid() const { return true; }
 
-QRectF VirtualKeyboardInputContext::keyboardRect() const { return QRectF(); }
+QRectF VirtualKeyboardInputContext::keyboardRect() const
+{
+    return d->InputEngine->keyboardRectangle();
+}
 
 void VirtualKeyboardInputContext::showInputPanel() {
     d->Visible = true;
