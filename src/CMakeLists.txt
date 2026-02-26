@@ -9,30 +9,36 @@ set(SOURCES
     "DeclarativeInputEngine.cpp")
 
 set(QML_FILES
-    "qml/AlternativeKeysPopup.qml"
-    "qml/BackspaceKey.qml"
-    "qml/CsLayout.qml"
-    "qml/DeLayout.qml"
-    "qml/DigitsLayout.qml"
-    "qml/ElLayout.qml"
-    "qml/EnLayout.qml"
-    "qml/EnterKey.qml"
-    "qml/EsLayout.qml"
-    "qml/FrLayout.qml"
-    "qml/HideKey.qml"
-    "qml/InputPanel.qml"
-    "qml/ItLayout.qml"
-    "qml/KeyModel.qml"
-    "qml/KeyPopup.qml"
-    "qml/Key.qml"
-    "qml/NlLayout.qml"
-    "qml/PlLayout.qml"
-    "qml/PtLayout.qml"
-    "qml/QwertyLayout.qml"
-    "qml/ShiftKey.qml"
-    "qml/SpaceKey.qml"
-    "qml/SymbolKey.qml"
-    "qml/SymbolLayout.qml")
+	"qml/AlternativeKeysPopup.qml"
+	"qml/BackspaceKey.qml"
+	"qml/CsLayout.qml"
+	"qml/DeLayout.qml"
+	"qml/DigitsLayout.qml"
+	"qml/ElLayout.qml"
+	"qml/EnLayout.qml"
+	"qml/EnterKey.qml"
+	"qml/EsLayout.qml"
+	"qml/FrLayout.qml"
+	"qml/HideKey.qml"
+	"qml/InputPanel.qml"
+	"qml/ItLayout.qml"
+	"qml/Key.qml"
+	"qml/KeyModel.qml"
+	"qml/KeyPopup.qml"
+	"qml/LanguageKey.qml"
+	"qml/LtSrHrBsLayout.qml"
+	"qml/NlLayout.qml"
+	"qml/PlLayout.qml"
+	"qml/PtLayout.qml"
+	"qml/QwertyLayout.qml"
+	"qml/RuLayout.qml"
+	"qml/ShiftKey.qml"
+	"qml/SpaceKey.qml"
+	"qml/SvLayout.qml"
+	"qml/SymbolKey.qml"
+	"qml/SymbolLayout.qml"
+	"qml/UkLayout.qml"
+    )
 
 foreach(_file IN_LISTS QML_FILES)
   cmake_path(GET _file FILENAME _fileName)
@@ -48,33 +54,31 @@ qt_add_qml_module(
   1.0
   PLUGIN_TARGET
   ${PROJECT_NAME}
-  OUTPUT_DIRECTORY
-  "QtQuick/CuteKeyboard"
-  RESOURCE_PREFIX
-  "/"
-  CLASS_NAME
-  "VirtualKeyboardInputContextPlugin"
+  OUTPUT_DIRECTORY "QtQuick/CuteKeyboard"
+  RESOURCE_PREFIX "/"
+  CLASS_NAME "VirtualKeyboardInputContextPlugin"
+  QML_FILES ${QML_FILES}
+  NO_GENERATE_PLUGIN_SOURCE
   SOURCES
-  ${HEADERS}
-  ${SOURCES}
-  QML_FILES
-  ${QML_FILES}
-  NO_GENERATE_PLUGIN_SOURCE)
+  	${HEADERS}
+  	${SOURCES}
+  )
 
 qt_add_resources(${PROJECT_NAME} "icons" PREFIX "/" FILES "resources.qrc")
 
-target_link_libraries(
-  ${PROJECT_NAME} PRIVATE Qt::Core Qt::Gui Qt::GuiPrivate Qt::Qml Qt::Quick
-                          Qt::QuickPrivate)
+target_link_libraries( ${PROJECT_NAME}
+	PRIVATE Qt::Core Qt::Gui Qt::GuiPrivate Qt::Qml Qt::Quick Qt::QuickPrivate)
 
-if(${PROJECT_NAME} STREQUAL ${CMAKE_PROJECT_NAME})
-  set(INSTALL_DIR ${QT_DIR}/../../../plugins/platforminputcontexts)
-else()
-  set(INSTALL_DIR ${CMAKE_INSTALL_BINDIR}/platforminputcontexts)
-  set_target_properties(
-    ${PROJECT_NAME}
-    PROPERTIES LIBRARY_OUTPUT_DIRECTORY
-               "$<TARGET_FILE_DIR:${CMAKE_PROJECT_NAME}>/platforminputcontexts")
-endif()
+include(GNUInstallDirs)
 
-install(TARGETS ${PROJECT_NAME} LIBRARY DESTINATION ${INSTALL_DIR})
+
+
+install(TARGETS ${PROJECT_NAME}
+	DESTINATION ${CMAKE_INSTALL_LIBDIR}/plugins/platforminputcontexts/ )
+
+install(FILES  ${QML_FILES} qml/qmldir 
+	DESTINATION ${CMAKE_INSTALL_LIBDIR}/qml/QtQuick/CuteKeyboard
+	PERMISSIONS OWNER_READ GROUP_READ WORLD_READ
+	PERMISSIONS OWNER_EXECUTE GROUP_EXECUTE WORLD_EXECUTE
+	)
+
