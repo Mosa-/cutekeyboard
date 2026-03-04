@@ -6,8 +6,6 @@ import QtQuick.Layouts 1.12
 Button {
     id: key
 
-    objectName: inputPanelRef.objectName + "Key_" + (btnDisplayedText ? btnDisplayedText : btnText)
-
     property real weight: parent.keyWeight
     property string btnText: ""
     property string btnDisplayedText: text
@@ -25,6 +23,7 @@ Button {
     property bool showPreview: true
     property bool functionKey: false
 
+    objectName: (inputPanelRef ? inputPanelRef.objectName : "") + "Key_" + (btnDisplayedText ? btnDisplayedText : btnText)
     focusPolicy: Qt.NoFocus
     Layout.minimumWidth: key.implicitWidth
     Layout.minimumHeight: key.implicitHeight
@@ -48,9 +47,16 @@ Button {
         }
     }
     onReleased: {
-        if (!functionKey)
+        if (!functionKey) {
             InputEngine.virtualKeyClick(btnKey, InputEngine.uppercase ? btnText.toUpperCase() : btnText, InputEngine.uppercase ? Qt.ShiftModifier : 0);
-
+            var autoCapUp = false;
+            if (InputEngine.autoCapitalize && !InputContext.isPasswordField()) {
+                var surrounding = InputContext.surroundingText();
+                autoCapUp = surrounding.length === 0 || /[.!?] $/.test(surrounding);
+            }
+            if (!InputEngine.persistentUppercase || autoCapUp)
+                InputEngine.uppercase = autoCapUp;
+        }
     }
 
     Timer {
@@ -99,4 +105,5 @@ Button {
             fillMode: btnIconFillMode
         }
     }
+
 }

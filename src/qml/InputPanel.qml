@@ -25,8 +25,9 @@ Item {
     property var availableLanguageLayouts: ["En"]
     property int keyboardSideMargin: 5
     property alias emptySpaceBar: layoutLoader.emptySpaceBar
-
-    /*! \internal */
+    property bool persistentShift: true
+    property bool autoCapitalize: false
+    //! \internal
     readonly property bool __isRootItem: root.parent !== null && root.parent.parent === null
 
     function showKeyPopup(keyButton) {
@@ -72,10 +73,10 @@ Item {
     onLanguageLayoutChanged: loadLettersLayout()
     onEnterKeyEnabledChanged: InputPanel.enterKeyEnabled = enterKeyEnabled;
 
+    onPersistentShiftChanged: InputEngine.persistentUppercase = persistentShift
+    onAutoCapitalizeChanged: InputEngine.autoCapitalize = autoCapitalize
     Component.onCompleted: {
-
-        InputContext.registerInputPanel(root)
-
+        InputContext.registerInputPanel(root);
         if (availableLanguageLayouts.length == 0)
             availableLanguageLayouts = ["En"];
 
@@ -96,6 +97,8 @@ Item {
         InputPanel.languageIcon = languageIcon;
         InputPanel.availableLanguageLayouts = availableLanguageLayouts;
         InputPanel.languageLayout = languageLayout;
+        InputEngine.persistentUppercase = persistentShift;
+        InputEngine.autoCapitalize = autoCapitalize;
         loadLettersLayout();
     }
 
@@ -141,7 +144,6 @@ Item {
 
             // display empty space bar
             property bool emptySpaceBar: false
-
             // lang description only needed for layouts that share a file
             property string langDescription
             // space identifier for the correct translation of the word "space"
