@@ -27,3 +27,10 @@ add_subdirectory(src)
 if(BUILD_EXAMPLES)
   add_subdirectory(example)
 endif()
+
+set(CPACK_PACKAGE_NAME "cutekeyboard")
+set(CPACK_PACKAGE_CONTACT "customercare@kruss.de")
+set(CPACK_GENERATOR "DEB")
+set(CPACK_DEBIAN_PACKAGE_ARCHITECTURE "$ENV{ARCH}" )
+
+INCLUDE(CPack)
